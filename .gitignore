@@ -49,5 +49,6 @@ coverage
 docker/*
 !docker/config.json
 !docker/docker-compose.yml
+!docker/*.sh
 
 pnpm-lock.yaml

@@ -29,7 +29,9 @@ ARG proxy
 ARG base_url
 
 # copy common node_modules and one project node_modules
-COPY package.json pnpm-workspace.yaml .npmrc tsconfig.json ./
+COPY package.json pnpm-workspace.yaml .npmrc ./
+COPY tsconfig.json ./
+COPY projects/app/tsconfig.json ./projects/app/
 COPY --from=maindeps /app/node_modules ./node_modules
 COPY --from=maindeps /app/packages ./packages
 COPY ./projects/app ./projects/app
@@ -85,10 +87,10 @@ RUN chown -R nextjs:nodejs /app/data
 
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
-ENV PORT=3000
+ENV PORT=8002
 ENV NEXT_PUBLIC_BASE_URL=$base_url
 
-EXPOSE 3000
+EXPOSE 8002
 
 USER nextjs
 
