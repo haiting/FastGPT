@@ -59,6 +59,7 @@ import { getWorkflowResponseWrite } from '@fastgpt/service/core/workflow/dispatc
 import { WORKFLOW_MAX_RUN_TIMES } from '@fastgpt/service/core/workflow/constants';
 import { getPluginInputsFromStoreNodes } from '@fastgpt/global/core/app/plugin/utils';
 import { ExternalProviderType } from '@fastgpt/global/core/workflow/runtime/type';
+import { combineAIToolVariables } from './combineAIToolVariables';
 
 type FastGptWebChatProps = {
   chatId?: string; // undefined: get histories from messages, '': new chat, 'xxxxx': get histories from db
@@ -234,6 +235,9 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
       getAppLatestVersion(app._id, app),
       MongoChat.findOne({ appId: app._id, chatId }, 'source variableList variables')
     ]);
+
+    // 合并 AITool variables
+    combineAIToolVariables(messages, variables);
 
     // Get store variables(Api variable precedence)
     if (chatDetail?.variables) {
