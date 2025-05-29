@@ -54,7 +54,9 @@ chmod +x ./docker/deploy.sh
 
 ### 2.2 生成环境部署打包
 - 确保 `docker-compose.yml` 的内容
-`fastgpt` 的镜像应为：`sinogear/fastgpt:v4.9.6`
+`fastgpt` 的镜像应为：`sinobest-fastgpt/fastgpt:xxx`，其中 `xxx` 为版本号
+
+```yaml
 
 ```bash
 # 根目录下 - 构建前端镜像
