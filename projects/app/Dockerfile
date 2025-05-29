@@ -8,11 +8,12 @@ RUN [ -z "$proxy" ] || sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /
 RUN apk add --no-cache libc6-compat && npm install -g pnpm@9.4.0
 
 # copy packages and one project
-COPY pnpm-lock.yaml pnpm-workspace.yaml .npmrc ./
+# COPY pnpm-lock.yaml pnpm-workspace.yaml .npmrc ./
+COPY pnpm-workspace.yaml .npmrc ./
 COPY ./packages ./packages
 COPY ./projects/app/package.json ./projects/app/package.json
 
-RUN [ -f pnpm-lock.yaml ] || (echo "Lockfile not found." && exit 1)
+# RUN [ -f pnpm-lock.yaml ] || (echo "Lockfile not found." && exit 1)
 
 # if proxy exists, set proxy
 RUN if [ -z "$proxy" ]; then \

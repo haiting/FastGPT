@@ -17,9 +17,6 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# local env files
-.env*.local
-
 # vercel
 .vercel
 
@@ -45,3 +42,11 @@ files/helm/fastgpt/charts/*.tgz
 
 tmp/
 coverage
+
+docker/*
+!docker/*.sh
+!docker/*.json
+!docker/*.yml
+
+pnpm-lock.yaml
+package-lock.json
